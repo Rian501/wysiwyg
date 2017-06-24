@@ -1,0 +1,50 @@
+/*******************************
+BASE STYLES
+*******************************/
+
+.container {
+	display: flex;
+}
+
+.person {
+	border: 1px solid darkblue;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.person:nth-child(odd) {
+	background-color: lightblue;
+}
+
+.person:nth-child(even) {
+	background-color: lightyellow;
+}
+
+input {
+	max-width: 90%;
+}
+
+header {
+	font-size: 2em;
+}
+
+article {
+	font-size: 1.5em;
+}
+
+img {
+	max-height: 350px;
+}
+
+footer {
+	font-size: .75em;
+}
+
+.dotted-border {
+	border: 3px dotted orange;
+}
+
+.selected-text {
+  color: orange;
+}

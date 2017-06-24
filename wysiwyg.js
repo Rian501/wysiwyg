@@ -1,4 +1,5 @@
-// Create an array of objects that represents famous people (see structure below).
+let inputBox = document.getElementById('userInput');
+
 let famousPplArray = [
 	{
 	  title: "Samurai",
@@ -50,11 +51,18 @@ for (let i=0; i< personContainer.length; i++) {
 	personContainer[i].addEventListener("click", function() {
 		console.log("target?", event.target, event.currentTarget);
 		event.currentTarget.classList.add("dotted-border");
-		//So, ideally (probably) we want to remove the dotted border if another div is clicked, but that isn't in the reqs so for MVP and for now, this is fine.
+		//So, ideally (probably) we want to remove the dotted border if another div is clicked...
 		var selectedBio = event.currentTarget.querySelector('.bio');
 		console.log("selected Bio?", selectedBio);
-		selectedBio.style.color = "blue";
-		//somehow link the person's bio text to the input box, replacing the bio with what is in the input box immediately (not on enter, but as you type)
+		selectedBio.style.backgroundColor = "orange";
+		inputBox.focus();
+		inputBox.addEventListener('keyup', function () {
+			if (event.key !== 'Enter') {
+ 			selectedBio.innerHTML = inputBox.value;
+			} else {
+				inputBox.value = '';
+			}
+		})
 	});
 };
 

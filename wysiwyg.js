@@ -49,22 +49,45 @@ var personContainer = document.getElementsByClassName("person");
 
 for (let i=0; i< personContainer.length; i++) {
 	personContainer[i].addEventListener("click", function() {
-		console.log("target?", event.target, event.currentTarget);
-		event.currentTarget.classList.add("dotted-border");
-		//So, ideally (probably) we want to remove the dotted border if another div is clicked...
-		var selectedBio = event.currentTarget.querySelector('.bio');
-		console.log("selected Bio?", selectedBio);
-		selectedBio.style.backgroundColor = "orange";
-		inputBox.focus();
-		inputBox.addEventListener('keyup', function () {
-			if (event.key !== 'Enter') {
- 			selectedBio.innerHTML = inputBox.value;
-			} else {
-				inputBox.value = '';
-			}
-		})
-	});
+		UnSelect(event);
+		}
+	);
 };
 
+function UnSelect(event) {
+	  for (let i=0; i<personContainer.length; i++) {
+		personContainer[i].classList.remove("dotted-border");
+		}
+		newSelect(event);
+}
+
+function newSelect(event) {
+	event.currentTarget.classList.add("dotted-border");
+	let selectedCard = document.getElementsByClassName("dotted-border")
+	console.log("selectedCard", selectedCard);
+	targetBioOfSelected(selectedCard);
+}
+
+function targetBioOfSelected(selectedCard) {
+	let selectedBio = selectedCard[0].querySelector('.bio');
+	console.log("the query", selectedCard[0].querySelector('.bio'));
+	doStuffToSelected(selectedBio);
+}
+
+function doStuffToSelected(selectedBio) {
+	console.log("selectedBio", selectedBio);
+	inputBox.focus();
+	inputBox.addEventListener('keyup', function () {
+		if (event.key !== 'Enter') {
+			selectedBio.innerHTML = inputBox.value;
+		} else {
+			inputBox.value = '';
+		}
+	});
+}
+
+
+
+//make functions that step 1 clear out the selection, then get the new selection, then do stuff to it.
 
 // So the input box should clear on enter press.. but the .value will be filling in text in  the bio section of the HTML immediately.

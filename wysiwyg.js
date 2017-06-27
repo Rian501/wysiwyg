@@ -87,13 +87,14 @@ function doStuffToSelected(selectedCard, selectedBio) {
 	console.log("selected Card", selectedCard);
 	inputBox.focus();
 	inputBox.addEventListener('keyup', function () {
-	if (selectedCard.classList.contains('dotted-border') ) {
-		selectedCard.querySelector('.bio').innerHTML = inputBox.value;
-		}
-	if (event.key === 'Enter')  {
-		clearEvent();
-		}
-	});
+		let replacementText = inputBox.value;
+		if (selectedCard.classList.contains('dotted-border') ) {
+			selectedCard.querySelector('.bio').innerHTML = replacementText;
+			}
+		if (event.key === 'Enter')  {
+			clearEvent();
+			}
+		});
 }
 
 // //&& event.key !== 'Enter'

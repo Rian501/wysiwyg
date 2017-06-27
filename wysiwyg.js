@@ -32,8 +32,6 @@ let famousPplArray = [
 	  }
 	},
 ]
-				// <img src = "${famousPplArray[i].image}">  id="person-${i}
-
 
 let outputSec = document.getElementById("output");
 let i = 0;
@@ -42,6 +40,7 @@ function puppetMaster () {
 		outputSec.innerHTML += `
 			<div class="person">
 				<header>${famousPplArray[i].title}: ${famousPplArray[i].name}</header>
+				<img src = "${famousPplArray[i].image}">
 				<article class="bio">${famousPplArray[i].bio}</article>
 				<footer>Lifespan: ${famousPplArray[i].lifespan.birth} - ${famousPplArray[i].lifespan.death}</footer>
 			</div>`
@@ -77,6 +76,9 @@ function targetBioOfSelected(selectedCard) {
 	doStuffToSelected(selectedCard, selectedBio[0]);
 }
 function clearEvent() {
+	inputBox.removeEventListener('keyup', function() {
+		let replacementText = inputBox.value;
+	});
 	inputBox.value = '';
 	return false
 }
@@ -88,7 +90,7 @@ function doStuffToSelected(selectedCard, selectedBio) {
 	inputBox.focus();
 	inputBox.addEventListener('keyup', function () {
 		let replacementText = inputBox.value;
-		if (selectedCard.classList.contains('dotted-border') ) {
+		if (selectedCard.classList.contains('dotted-border') && event.key !== 'Enter') {
 			selectedCard.querySelector('.bio').innerHTML = replacementText;
 			}
 		if (event.key === 'Enter')  {
@@ -97,9 +99,4 @@ function doStuffToSelected(selectedCard, selectedBio) {
 		});
 }
 
-// //&& event.key !== 'Enter'
-
-// //make functions that step 1 clear out the selection, then get the new selection, then do stuff to it.
-
-// // So the input box should clear on enter press.. but the .value will be filling in text in  the bio section of the HTML immediately.
 puppetMaster();
